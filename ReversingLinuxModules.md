@@ -48,7 +48,6 @@ Right here is when it is critical to examine the file thoroughly. If uoi look in
  ![Pasted image 20241216220808](https://github.com/user-attachments/assets/726f9eca-e08c-4c4b-ba19-faa81e8330b0)
 
  
-<br><br>
 ### **What is the name of the function that converts keycodes to strings?**
 ---
  
