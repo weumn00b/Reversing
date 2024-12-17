@@ -6,7 +6,7 @@ Reversing - ColossalBreach
 ## Files
 ---
 
-Our first step in this walkthrough is to look at what files we downloaded from the CTF.
+Our first step in this walkthrough is to examine what files we downloaded from the CTF.
 
 You can see that there is a file named "brainstorm.ko" and a file named "logs"
 
