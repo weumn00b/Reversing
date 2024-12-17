@@ -92,7 +92,7 @@ Looking at the data that is referenced, you can see `6w00tw00t` is being referen
 ### **What is the XOR key used to obfuscate the keys? (e.g. 0x01, 0x32)**
 ---
  
-This question is a little harder. The function to focus on is `spy_cb`, as this is what is doing the obfuscation. In the function, there appears to be a lot of math, but the `do{}` statement is where all the heavy lifting is done. 
+This question is more difficult. The function to focus on is `spy_cb`, as this is what is doing the obfuscation. In the function, there appears to be a lot of math, but the `do{}` statement is where all the heavy lifting is done. 
  
  ![Pasted image 20241216223820](https://github.com/user-attachments/assets/96f6e114-f831-4846-950c-832778a310c3)
 
