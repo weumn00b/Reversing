@@ -60,7 +60,7 @@ This one is simple. In the functions you will remember a function called keycode
 ### What file does the module create to store logs? Provide the full path.
 ---
  
-This is defined in the spy_init function that is shown above. You can see that a function called `debugfs` is being used to create a directory named `spyyy`. Looking into debugfs, its [mentioned](https://docs.kernel.org/filesystems/debugfs.html) that its typically mounted to `/sys/kernel/debug`. The next thing you may notice is that debugfs is creating some type of file. It mentions `DAT_00100c6c` as one of the arguments. If you look into the data more, you can observe that `DAT_00100c6c` references characters.
+This is defined in the spy_init function that is shown above. You can see that a function called `debugfs` is being executed to create a directory named `spyyy`. Looking into debugfs, its [mentioned](https://docs.kernel.org/filesystems/debugfs.html) that its typically mounted to `/sys/kernel/debug`. The next thing you may notice is that debugfs is creating some type of file. It mentions `DAT_00100c6c` as one of the arguments. If you look into the data more, you can observe that `DAT_00100c6c` references characters.
  
  ![Pasted image 20241216222008](https://github.com/user-attachments/assets/57841be5-ebc2-48fa-ac83-d4bb04aa1937)
 
