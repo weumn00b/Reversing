@@ -110,7 +110,7 @@ Next Question:
  
  
 ### **What is the password entered for adam?**
- 
+---
  
 This is where you should look at the log file. Now that you know that the obfuscation is done by XORing by 0x19 bites, you can reverse the obfuscation in the log file. Reversing XOR is as simple as just performing the XOR again. You could look up the ASCII character codes and do this by hand, but a python script is the fastest way.
  
