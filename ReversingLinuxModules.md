@@ -10,12 +10,12 @@ You can see that there is a file named "brainstorm.ko" and a file named "logs"
 
 ![Pasted image 20241216213725](https://github.com/user-attachments/assets/f98ae060-0f7b-48f5-8b89-a16da77883f2)
 
-The next step is to look into what the ".ko" extension [signifies](https://docs.legato.io/latest/getStartedKO.html). ".ko" files are used to "extend" the kernel of a Linux Distribution. From my understanding, this means that they are some sort of binary files, probably coded in C.
+The next step is to look into what the ".ko" extension [signifies](https://docs.legato.io/latest/getStartedKO.html). ".ko" files are used to "extend" the kernel of a Linux Distribution. From my understanding, this means they are binary files, probably coded in C.
 
 ![Pasted image 20241216213901](https://github.com/user-attachments/assets/e2f54ccb-819e-4cc3-995d-1935302f05d4)
 
 Looking at the logs file, it appears to be gibberish. It is probably necessary to decode this to get our flag.
-
+<br><br>
 ## Ghidra
 ---
  
@@ -29,7 +29,7 @@ The first thing you will notice are these functions that have been created:
 Looking at "keys_read", I would assume that they are installing some sort of keylogger. We will save that for later.
  
  
-
+<br><br>
 ### **Who is the author?**
 ---
  
@@ -41,7 +41,7 @@ A good thing to know in Ghidra is the search tool. There are many different ways
 There are 2 results, they both link to this line that says "author=0xEr3n".
 
  ![Pasted image 20241216214856](https://github.com/user-attachments/assets/78a355bc-7124-413a-a10e-ada64b0f605d)
-
+<br><br>
 ### **What is the name of the function used to register keyboard events?**
 ---
  
@@ -50,14 +50,14 @@ Right here is when it is critical to examine the file thoroughly. If uoi look in
  ![Pasted image 20241216220808](https://github.com/user-attachments/assets/726f9eca-e08c-4c4b-ba19-faa81e8330b0)
 
  
-
+<br><br>
 ### **What is the name of the function that converts keycodes to strings?**
 ---
  
 This one is really easy. In the functions you will remember a function called keycode_to_string . This is the correct function.
  
  ![Pasted image 20241216221047](https://github.com/user-attachments/assets/7b577f96-8e3c-42cb-b3f5-0afb92101b52)
-
+<br><br>
 ### What file does the module create to store logs? Provide the full path.
 ---
  
@@ -68,7 +68,7 @@ This is defined in the spy_init function that is shown above. You can see that a
 
  
 The full path to the logs is `/sys/kernel/debug/spyyy/keys`
-
+<br><br>
 ### **What Message does the module print when imported?**
 ---
  
@@ -89,7 +89,7 @@ Looking at the data that is referenced, you can see `6w00tw00t` is being referen
  
 [Looking into printk](https://en.wikipedia.org/wiki/Printk), you can see that 6 is actually a log level that denotes an informational message. The message being displayed is actually `w00tw00t`.
  
-
+<br><br>
 ### **What is the XOR key used to obfuscate the keys? (e.g. 0x01, 0x32)**
 ---
  
@@ -99,7 +99,7 @@ This question is a little harder. The function to focus on is `spy_cb`, as this 
 
  
 the XOR operation in C is `^`, and you can see that the first line of the `do` statement is executing the shift. It is shifting by 0x19.
-
+<br><br>
 ### **What is the password entered for adam?**
 ---
  
