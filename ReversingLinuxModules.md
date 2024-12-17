@@ -8,7 +8,7 @@ Reversing - ColossalBreach
 
 Our first step in this walkthrough is to examine what files we downloaded from the CTF.
 
-You can see that there is a file named "brainstorm.ko" and a file named "logs"
+You can observe that there is a file named "brainstorm.ko" and a file named "logs"
 
 ![Pasted image 20241216213725](https://github.com/user-attachments/assets/f98ae060-0f7b-48f5-8b89-a16da77883f2)
 
@@ -60,7 +60,7 @@ This one is simple. In the functions you will remember a function called keycode
 ### What file does the module create to store logs? Provide the full path.
 ---
  
-This is defined in the spy_init function that is shown above. You can see that a function called `debugfs` is being executed to create a directory named `spyyy`. Looking into debugfs, its [mentioned](https://docs.kernel.org/filesystems/debugfs.html) that its typically mounted to `/sys/kernel/debug`. The next thing you may notice is that debugfs is creating some type of file. It mentions `DAT_00100c6c` as one of the arguments. If you look into the data more, you can observe that `DAT_00100c6c` references characters.
+This is defined in the spy_init function that is shown above. You can observe that a function called `debugfs` is being executed to create a directory named `spyyy`. Looking into debugfs, its [mentioned](https://docs.kernel.org/filesystems/debugfs.html) that its typically mounted to `/sys/kernel/debug`. The next thing you may notice is that debugfs is creating some type of file. It mentions `DAT_00100c6c` as one of the arguments. If you look into the data more, you can observe that `DAT_00100c6c` references characters.
  
  ![Pasted image 20241216222008](https://github.com/user-attachments/assets/57841be5-ebc2-48fa-ac83-d4bb04aa1937)
 
@@ -86,7 +86,7 @@ Looking at the data that is referenced, you can see `6w00tw00t` is being referen
  ![Pasted image 20241216223329](https://github.com/user-attachments/assets/c67ed92b-5d50-4813-a0d5-299522a1885e)
 
  
-[Looking into printk](https://en.wikipedia.org/wiki/Printk), you can see that 6 is actually a log level that denotes an informational message. The message being displayed is actually `w00tw00t`.
+[Looking into printk](https://en.wikipedia.org/wiki/Printk), 6 is actually a log level that denotes an informational message. The message being displayed is actually `w00tw00t`.
  
 <br><br>
 ### **What is the XOR key used to obfuscate the keys? (e.g. 0x01, 0x32)**
