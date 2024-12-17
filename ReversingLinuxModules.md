@@ -16,7 +16,7 @@ The next step is to look into what the ".ko" extension [signifies](https://docs.
 
 ![Pasted image 20241216213901](https://github.com/user-attachments/assets/e2f54ccb-819e-4cc3-995d-1935302f05d4)
 
-Looking at the logs file, it appears to be gibberish. It is probably necessary to decode this to get our flag.
+When examining the logs file, it appears to be gibberish. It is probably necessary to decode this to get our flag.
 <br><br>
 ## Ghidra
 ---
@@ -28,7 +28,7 @@ The first thing you will notice are these functions that have been created:
 ![Pasted image 20241216214338](https://github.com/user-attachments/assets/3496c219-b4d8-4fe8-864c-43a4ea581c96)
 
 
-Looking at "keys_read", I would assume that they are installing some type of keylogger. We will save that for later.
+While observing "keys_read", I assumed that they are installing some type of keylogger. We will save that for later.
 <br><br>
 ### **Who is the author?**
 ---
@@ -76,12 +76,12 @@ A good starting point is searching for print in the program. You can see that `p
  
  ![Pasted image 20241216222425](https://github.com/user-attachments/assets/587d2377-c6d1-47e1-91e4-620898d463fd)
 
-Looking at the print statement while loading, you will observe that it's argument is `DAT_00100c71`.
+Observing the print statement while loading, you will see that it's argument is `DAT_00100c71`.
  
  ![Pasted image 20241216222727](https://github.com/user-attachments/assets/eb1c6035-6198-4b4b-aa1e-47b1034d84ec)
 
  
-Looking at the data that is referenced, you can see `6w00tw00t` is being referenced by the `printk` statement.
+Observing the data that is referenced, you can see `6w00tw00t` is being referenced by the `printk` statement.
  
  ![Pasted image 20241216223329](https://github.com/user-attachments/assets/c67ed92b-5d50-4813-a0d5-299522a1885e)
 
