@@ -102,7 +102,7 @@ the XOR operation in C is `^`, and you can see that the first line of the `do` s
 ### **What is the password entered for adam?**
 ---
  
-This is where you should look at the log file. Now that you know that the obfuscation is done by XORing by 0x19 bites, you can reverse the obfuscation in the log file. Reversing XOR is as simple as just performing the XOR again. You could look up the ASCII character codes and do this by hand, but a Python script is the fastest way (I have an example in this GitHub Repo).
+This is where you should look at the log file. Now that you know that the obfuscation is done by XORing by 0x19 bites, you can reverse the obfuscation in the log file. Reversing XOR is as simple as just performing the XOR again. You could look up the ASCII character codes and do this by hand, but a [Python script](https://github.com/weumn00b/Reversing/blob/main/reverse.py) is the fastest way (I have an example in this GitHub Repo).
  
  ![Pasted image 20241216224953](https://github.com/user-attachments/assets/3315d014-3cde-4f98-9809-97e15975b6ae)
 
