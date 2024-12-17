@@ -55,7 +55,7 @@ Right here is when it is critical to examine the file thoroughly. If uoi look in
 This one is really easy. In the functions you will remember a function called keycode_to_string . This is the correct function.
  
  ![Pasted image 20241216221047](https://github.com/user-attachments/assets/7b577f96-8e3c-42cb-b3f5-0afb92101b52)
-<br><br>
+<br>
 ### What file does the module create to store logs? Provide the full path.
 ---
  
