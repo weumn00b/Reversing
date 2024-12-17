@@ -15,7 +15,7 @@ The next step is to look into what the ".ko" extension [signifies](https://docs.
 ![Pasted image 20241216213901](https://github.com/user-attachments/assets/e2f54ccb-819e-4cc3-995d-1935302f05d4)
 
 Looking at the logs file, it appears to be gibberish. It is probably necessary to decode this to get our flag.
-<br><br>
+<br>
 ## Ghidra
 ---
  
