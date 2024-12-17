@@ -7,27 +7,25 @@
 Our first step in this walkthrough is to look at what files we downloaded from the CTF.
 
 You can see that there is a file named "brainstorm.ko" and a file named "logs"
-<br>
-<br><br>
+
 ![Pasted image 20241216213725](https://github.com/user-attachments/assets/f98ae060-0f7b-48f5-8b89-a16da77883f2)
-<br>
-<br>
+
 The next step is to look into what the ".ko" extension [signifies](https://docs.legato.io/latest/getStartedKO.html). ".ko" files are used to "extend" the kernel of a Linux Distribution. From my understanding, this means that they are some sort of binary files, probably coded in C.
-<br><br><br>
+
 ![Pasted image 20241216213901](https://github.com/user-attachments/assets/e2f54ccb-819e-4cc3-995d-1935302f05d4)
-<br><br>
+
 Looking at the logs file, it appears to be gibberish. It is probably necessary to decode this to get our flag.
-<br><br><br>
+
 ## Ghidra
 ---
  
 Now that you have a basic understanding of the files, its time to open the "brainstorm.ko" file, and start to dig into what is happening. 
 
 The first thing you will notice are these functions that have been created:
- <br><br><br>
+
 ![Pasted image 20241216214338](https://github.com/user-attachments/assets/3496c219-b4d8-4fe8-864c-43a4ea581c96)
 
- <br><br>
+
 Looking at "keys_read", I would assume that they are installing some sort of keylogger. We will save that for later.
  
  
@@ -36,23 +34,23 @@ Looking at "keys_read", I would assume that they are installing some sort of key
 ---
  
 A good thing to know in Ghidra is the search tool. There are many different ways you can search for references to things, but a good starting point is All Fields.
- <br><br><br>
+
  ![Pasted image 20241216214748](https://github.com/user-attachments/assets/f45c524e-70dc-4690-8a3e-92323ead5224)
-<br><br>
+
  
 There are 2 results, they both link to this line that says "author=0xEr3n".
- <br><br><br>
+
  ![Pasted image 20241216214856](https://github.com/user-attachments/assets/78a355bc-7124-413a-a10e-ada64b0f605d)
 
 ### **What is the name of the function used to register keyboard events?**
 ---
  
 Right here is when it is critical to examine the file thoroughly. If uoi look in our "spy_init" function, you can see that after a directory and file is made, a function named register_keyboard_notifier is being called. 
- <br><br><br>
+
  ![Pasted image 20241216220808](https://github.com/user-attachments/assets/726f9eca-e08c-4c4b-ba19-faa81e8330b0)
 
  
- <br><br><br><br><br>
+
 ### **What is the name of the function that converts keycodes to strings?**
 ---
  
