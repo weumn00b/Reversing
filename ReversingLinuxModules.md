@@ -1,19 +1,19 @@
 # Reversing Linux Modules
 ---
- 
+  \
 ## Files
 ---
- 
+  \
 Our first step in this walkthrough is to look at what files we downloaded from the CTF.
- 
-We can see that we have a file named "brainstorm.ko" and a file named "logs"
- 
- 
- 
-We then want to look into what the ".ko" extension [signifies](https://docs.legato.io/latest/getStartedKO.html). ".ko" files are used to "extend" the kernel of a Linux Distribution.  From my understanding, this means that they are some sort of binary files, probably coded in C.
- 
-Looking at the logs file, it appears to be gibberish. We will probably need to decode this to get our flag.
 
+We can see that we have a file named "brainstorm.ko" and a file named "logs"
+  \
+ 
+  \ 
+We then want to look into what the ".ko" extension [signifies](https://docs.legato.io/latest/getStartedKO.html). ".ko" files are used to "extend" the kernel of a Linux Distribution.  From my understanding, this means that they are some sort of binary files, probably coded in C.
+
+Looking at the logs file, it appears to be gibberish. We will probably need to decode this to get our flag.
+  \
  
  
 ## Ghidra
