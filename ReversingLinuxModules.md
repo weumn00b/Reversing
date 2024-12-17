@@ -6,36 +6,36 @@
 
 Our first step in this walkthrough is to look at what files we downloaded from the CTF.
 
-We can see that we have a file named "brainstorm.ko" and a file named "logs"
+You can see that there is a file named "brainstorm.ko" and a file named "logs"
 <br>
 <br><br>
 ![Pasted image 20241216213725](https://github.com/user-attachments/assets/f98ae060-0f7b-48f5-8b89-a16da77883f2)
 <br>
 <br>
-We then want to look into what the ".ko" extension [signifies](https://docs.legato.io/latest/getStartedKO.html). ".ko" files are used to "extend" the kernel of a Linux Distribution.  From my understanding, this means that they are some sort of binary files, probably coded in C.
+The next step is to look into what the ".ko" extension [signifies](https://docs.legato.io/latest/getStartedKO.html). ".ko" files are used to "extend" the kernel of a Linux Distribution. From my understanding, this means that they are some sort of binary files, probably coded in C.
 <br><br><br>
 ![Pasted image 20241216213901](https://github.com/user-attachments/assets/e2f54ccb-819e-4cc3-995d-1935302f05d4)
 <br><br>
-Looking at the logs file, it appears to be gibberish. We will probably need to decode this to get our flag.
+Looking at the logs file, it appears to be gibberish. It is probably necessary to decode this to get our flag.
 <br><br><br>
 ## Ghidra
 ---
  
-Now that we have a basic understanding of the files, its time to open the "brainstorm.ko" file, and start to dig into what is happening. 
+Now that you have a basic understanding of the files, its time to open the "brainstorm.ko" file, and start to dig into what is happening. 
 
-The first thing I see are these functions that have been created:
+The first thing you will notice are these functions that have been created:
  <br><br><br>
 ![Pasted image 20241216214338](https://github.com/user-attachments/assets/3496c219-b4d8-4fe8-864c-43a4ea581c96)
 
  <br><br>
-Looking at "keys_read", I bet that they are installing some sort of keylogger. We'll save that for later.
+Looking at "keys_read", I would assume that they are installing some sort of keylogger. We will save that for later.
  
  
 
 ### **Who is the author?**
 ---
  
-A good thing to know in Ghidra is the search tool. There are many different ways you can search for references to things, but I mainly just search all the fields.
+A good thing to know in Ghidra is the search tool. There are many different ways you can search for references to things, but a good starting point is All Fields.
  <br><br><br>
  ![Pasted image 20241216214748](https://github.com/user-attachments/assets/f45c524e-70dc-4690-8a3e-92323ead5224)
 <br><br>
@@ -47,7 +47,7 @@ There are 2 results, they both link to this line that says "author=0xEr3n".
 ### **What is the name of the function used to register keyboard events?**
 ---
  
-Right here is when we need to start figuring out what our file is doing. if we look in our "spy_init" function. We can see that after a directory and file is made, a function named register_keyboard_notifier is being called. 
+Right here is when it is critical to examine the file thoroughly. If uoi look in our "spy_init" function, you can see that after a directory and file is made, a function named register_keyboard_notifier is being called. 
  <br><br><br>
  ![Pasted image 20241216220808](https://github.com/user-attachments/assets/726f9eca-e08c-4c4b-ba19-faa81e8330b0)
 
@@ -56,25 +56,25 @@ Right here is when we need to start figuring out what our file is doing. if we l
 ### **What is the name of the function that converts keycodes to strings?**
 ---
  
-This one is really easy. In our functions we saw a keycode_to_string function. I assumed that this was the correct function. It was.
+This one is really easy. In the functions you will remember a function called keycode_to_string . This is the correct function.
  
  ![Pasted image 20241216221047](https://github.com/user-attachments/assets/7b577f96-8e3c-42cb-b3f5-0afb92101b52)
 
 ### What file does the module create to store logs? Provide the full path.
 ---
  
-This is defined in the spy_init function that is shown above. We can see pretty clearly that a function called `debugfs` is being used to create a directory named `spyyy`. Looking into debugfs, its [mentioned](https://docs.kernel.org/filesystems/debugfs.html) that its typically mounted to `/sys/kernel/debug`. The next thing I saw is that debugfs is creating some sort of file. It mentions `DAT_00100c6c` as one of the arguments. I looked into this a little more, and saw that `DAT_00100c6c` references characters.
+This is defined in the spy_init function that is shown above. You can see that a function called `debugfs` is being used to create a directory named `spyyy`. Looking into debugfs, its [mentioned](https://docs.kernel.org/filesystems/debugfs.html) that its typically mounted to `/sys/kernel/debug`. The next thing you may notice is that debugfs is creating some sort of file. It mentions `DAT_00100c6c` as one of the arguments. If you look into the data more, you can observe that `DAT_00100c6c` references characters.
  
  ![Pasted image 20241216222008](https://github.com/user-attachments/assets/57841be5-ebc2-48fa-ac83-d4bb04aa1937)
 
 
  
-I concluded that the full path to the logs was `/sys/kernel/debug/spyyy/keys`
+The full path to the logs is `/sys/kernel/debug/spyyy/keys`
 
 ### **What Message does the module print when imported?**
 ---
  
-I started by searching for print in the program. I saw `printk` being executed as `spy` was loaded and unloaded.
+A good starting point is searching for print in the program. You can see that `printk` is being executed by the program as  `spy` is loaded and unloaded.
  
  
  ![Pasted image 20241216222425](https://github.com/user-attachments/assets/587d2377-c6d1-47e1-91e4-620898d463fd)
