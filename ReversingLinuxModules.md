@@ -13,9 +13,7 @@ We can see that we have a file named "brainstorm.ko" and a file named "logs"
 We then want to look into what the ".ko" extension [signifies](https://docs.legato.io/latest/getStartedKO.html). ".ko" files are used to "extend" the kernel of a Linux Distribution.  From my understanding, this means that they are some sort of binary files, probably coded in C.
 <br><br>
 Looking at the logs file, it appears to be gibberish. We will probably need to decode this to get our flag.
-
- 
- 
+<br><br><br><br><br>
 ## Ghidra
 ---
  
@@ -29,8 +27,7 @@ Looking at "keys_read", I bet that they are installing some sort of keylogger. W
  
  
 Our first question is: 
- 
- 
+<br><br><br><br><br>
 ### **Who is the author?**
 ---
  
@@ -43,8 +40,8 @@ There are 2 results, they both link to this line that says "author=0xEr3n".
  
  
 Next Question:
- 
- 
+
+ <br><br><br><br><br>
 ### **What is the name of the function used to register keyboard events?**
 ---
  
@@ -54,7 +51,7 @@ Right here is when we need to start figuring out what our file is doing. if we l
 
 Next Question:
  
- 
+ <br><br><br><br><br>
 ### **What is the name of the function that converts keycodes to strings?**
 ---
  
@@ -64,7 +61,7 @@ This one is really easy. In our functions we saw a keycode_to_string function. I
  
 Next Question:
  
- 
+ <br><br><br><br><br>
 ### What file does the module create to store logs? Provide the full path.
 ---
  
@@ -76,7 +73,7 @@ I concluded that the full path to the logs was `/sys/kernel/debug/spyyy/keys`
  
 Next Question:
  
- 
+ <br><br><br><br><br>
 ### **What Message does the module print when imported?**
 ---
  
@@ -96,7 +93,7 @@ Looking at the data that is referenced, you can see `6w00tw00t` is being referen
  
 Next Question:
  
- 
+ <br><br><br><br><br>
 ### **What is the XOR key used to obfuscate the keys? (e.g. 0x01, 0x32)**
 ---
  
@@ -108,7 +105,7 @@ the XOR operation in C is `^`, and you can see that the first line of the `do` s
  
 Next Question:
  
- 
+ <br><br><br><br><br>
 ### **What is the password entered for adam?**
 ---
  
