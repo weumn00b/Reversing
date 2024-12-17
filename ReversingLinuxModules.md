@@ -1,6 +1,7 @@
 # Reversing Linux Modules
 ---
-
+CTF Write-up Hack The Box University CTF 2024: Binary Badlands
+Reversing - ColossalBreach
 ## Files
 ---
 
@@ -51,7 +52,7 @@ Right here is when it is critical to examine the file thoroughly. If uoi look in
 ### **What is the name of the function that converts keycodes to strings?**
 ---
  
-This one is really easy. In the functions you will remember a function called keycode_to_string . This is the correct function.
+This one is simple. In the functions you will remember a function called keycode_to_string . This is the correct function.
  
  ![Pasted image 20241216221047](https://github.com/user-attachments/assets/7b577f96-8e3c-42cb-b3f5-0afb92101b52)
 <br>
